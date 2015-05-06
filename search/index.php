@@ -30,7 +30,7 @@ require_once($CFG->dirroot . '/search/locallib.php');
 $page = optional_param('page', 0, PARAM_INT);
 $search = trim(optional_param('search', '', PARAM_NOTAGS));
 $fq_title = trim(optional_param('fq_title', '', PARAM_NOTAGS));
-$fq_author = '';//trim(optional_param('fq_author', '', PARAM_NOTAGS));
+$fq_author = '';
 $fq_module = trim(optional_param('fq_module', '0', PARAM_NOTAGS));
 $fq_from = optional_param('fq_from', 0, PARAM_INT);
 $fq_till = optional_param('fq_till', 0, PARAM_INT);
@@ -67,7 +67,7 @@ if (!empty($search)) { // search executed from URL params
 if ($data = $mform->get_data()) { // search executed from submitting form
     $search = $data->queryfield;
     $fq_title = $data->titlefilterqueryfield;
-    $fq_author = '';//$data->authorfilterqueryfield;
+    $fq_author = '';
     $fq_module = $data->modulefilterqueryfield;
     $fq_from = $data->searchfromtime;
     $fq_till = $data->searchtilltime;

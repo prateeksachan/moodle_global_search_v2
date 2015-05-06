@@ -42,9 +42,6 @@ class search_form extends moodleform {
         $mform->addElement('text', 'titlefilterqueryfield', get_string('titlefilterquery', 'search'));
         $mform->setType('titlefilterqueryfield', PARAM_TEXT);
 
-        //$mform->addElement('text', 'authorfilterqueryfield', get_string('authorfilterquery', 'search'));
-        //$mform->setType('authorfilterqueryfield', PARAM_TEXT);
-
         $mods = search_get_modules();
         $modules = array();
         $modules [] = "All modules";

@@ -77,13 +77,6 @@ function search_get_iterators($requireconfig = TRUE) {
 
     $functions = array();
 
-    // // Course
-    // $functions['course'] = new stdClass();
-    // $functions['course']->iterator = 'course_search_iterator';
-    // $functions['course']->documents = 'course_search_get_documents';
-    // $functions['course']->access = 'course_search_access';
-    // $functions['course']->module = 'course';
-
     // Modules
     $mods = search_get_modules($requireconfig);
 
@@ -170,7 +163,6 @@ function search_index(global_search_engine $client) {
         }
         $recordset->close();
         if ($numrecords > 0) {
-            //$client->commit();
             $indexingend = time();
             set_config($name . '_indexingstart', $indexingstart, 'search');
             set_config($name . '_indexingend', $indexingend, 'search');
@@ -214,7 +206,6 @@ function search_index_files(global_search_engine $client) {
     }
     $timetaken = microtime(TRUE) - $timestart;
     mtrace("Time : $timetaken");
-    //$client->commit();
 }
 
 
@@ -259,7 +250,6 @@ function search_delete_index(global_search_engine $client, $data) {
         $client->delete_by_query('*:*');
         search_reset_config();
     }
-    //$client->commit();
 }
 
 /**
@@ -269,7 +259,6 @@ function search_delete_index(global_search_engine $client, $data) {
  */
 function search_delete_index_by_id(global_search_engine $client, $id) {
     $client->delete_by_id($id);
-    //$client->commit();
 }
 
 /**

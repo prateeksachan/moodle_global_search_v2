@@ -118,7 +118,6 @@ foreach ($mods as $name => $mod) {
                                         $config[$name]->recordsprocessed . ' , ' .
                                         $config[$name]->docsignored);
     $modname = 'gs_support_' . $name;
-    //$cactive = new html_table_cell(($CFG->$modname) ? 'Yes' : 'No');
     $row = new html_table_row(array($cname, $clastrun, $ctimetaken));
     $gstable->data[] = $row;
 }
