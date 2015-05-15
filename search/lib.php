@@ -330,7 +330,7 @@ function search_display_results($result) {
 
     if (!empty($result->name)) {
         $s .=' > ' . $result->name;
-    } else {
+    } else if ($result->module != "course") {
         $module_parameters = explode('/', $result->modulelink);
         $module_id = explode('=', $module_parameters[3]);
         $module_record = get_coursemodule_from_id($module_parameters[2], $module_id[1], $result->courseid, FALSE, MUST_EXIST);
