@@ -7805,7 +7805,7 @@ function forum_search_get_documents($id) {
     $doc->addField('modified', gmdate('Y-m-d\TH:i:s\Z', $post->modified));
     $doc->addField('name', $forum->name);
     $doc->addField('title', $post->subject);
-    $doc->addField('content', strip_tags($post->message, '<p></p><br><br/>'));
+    $doc->addField('content', strip_tags(preg_replace('/style=\\"[^\\"]*\\"/', '', $post->message), '<p></p><br><br/>'));
     $doc->addField('courseid', $forum->course);
     $doc->addField('contextlink', $contextlink);
     $doc->addField('modulelink', $modulelink);

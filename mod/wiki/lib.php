@@ -672,7 +672,7 @@ function wiki_search_get_documents($id) {
     $doc->addField('created', gmdate('Y-m-d\TH:i:s\Z', $wikipage->timecreated));
     $doc->addField('modified', gmdate('Y-m-d\TH:i:s\Z', $wikipage->timemodified));
     $doc->addField('name', $wiki->name);
-    $doc->addField('content', strip_tags($wikipage->cachedcontent, '<p></p><br><br/>'));
+    $doc->addField('content', strip_tags(preg_replace('/style=\\"[^\\"]*\\"/', '', $wikipage->cachedcontent), '<p></p><br><br/>'));
     $doc->addField('title', $wikipage->title);
     $doc->addField('courseid', $wiki->course);
     $doc->addField('contextlink', $contextlink);

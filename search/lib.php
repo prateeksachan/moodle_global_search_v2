@@ -325,12 +325,13 @@ function search_display_results($result) {
     $s .= html_writer::start_tag('div', array('class'=>'forumpost clearfix side'));
     $s .= html_writer::start_tag('div', array('class'=>'row header clearfix'));
     $s .= html_writer::start_tag('div', array('class'=>'course'));
-    $s .= html_writer::link(new moodle_url('/course/view.php?id=' . $result->courseid), $coursefullname, $attributes);
+    $s .= '<h4><b>';
+    $s .= html_writer::link(new moodle_url($result->contextlink), $coursefullname, $attributes);
     $s .=' > ' . ucfirst($result->module);
 
     if (!empty($result->name)) {
         $s .=' > ' . $result->name;
-    } else if ($result->module != "course") {
+    } else if ($result->module != "course" || $result->module != "label") {
         $module_parameters = explode('/', $result->modulelink);
         $module_id = explode('=', $module_parameters[3]);
         $module_record = get_coursemodule_from_id($module_parameters[2], $module_id[1], $result->courseid, FALSE, MUST_EXIST);
@@ -341,6 +342,7 @@ function search_display_results($result) {
         $s .=' > ' . $result->title;
     }
 
+    $s .= '</b></h4>';
     $s .= html_writer::end_tag('div');
     $s .= html_writer::start_tag('div', array('class'=>'name'));
     if (!empty($result->intro)) {
@@ -368,10 +370,10 @@ function search_display_results($result) {
     $s .= html_writer::end_tag('div');
     $s .= html_writer::start_tag('div', array('class'=>'timeinfo'));
     if (!empty($result->modified)) {
-        $s .='<b><i>Last Modified on: </i></b>' . userdate(strtotime($result->modified)) . ' ';
+        $s .='<i><b>Last Modified on: </b>' . userdate(strtotime($result->modified)) . ' </i>';
     }
     if (!empty($result->created)) {
-        $s .='<b><i>Created on: </i></b>' . userdate(strtotime($result->created)) . '<br/>';
+        $s .='<i><b>Created on: </b>' . userdate(strtotime($result->created)) . '</i><br/>';
     }
     $s .= html_writer::end_tag('div');
     $s .= html_writer::end_tag('div');
@@ -383,6 +385,8 @@ function search_display_results($result) {
     $s .= html_writer::end_tag('div');
     $s .= html_writer::end_tag('div');
     $s .= html_writer::start_tag('div', array('class'=>'row footer clearfix side'));
+
+    $s .= '<br/>';
 
     if (!empty($result->directlink)) {
         if (!empty($result->contextlink)) {
@@ -397,7 +401,7 @@ function search_display_results($result) {
         }
     } else if (!empty($result->contextlink)) {
         $s .= html_writer::span(
-                                html_writer::link(new moodle_url($result->contextlink), 'View this result in context', $attributes),
+                                html_writer::link(new moodle_url($result->contextlink), '<b>View this result in context</b>', $attributes),
                                 'urllink');
     }
 

@@ -467,7 +467,7 @@ function book_search_get_documents($id) {
     $doc->addField('modified', gmdate('Y-m-d\TH:i:s\Z', $chapter->timemodified));
     $doc->addField('name', $book->name);
     $doc->addField('title', $chapter->title);
-    $doc->addField('content', strip_tags($chapter->content, '<p></p><br><br/>'));
+    $doc->addField('content', strip_tags(preg_replace('/style=\\"[^\\"]*\\"/', '', $chapter->content), '<p></p><br><br/>'));
     $doc->addField('type', SEARCH_TYPE_HTML);
     $doc->addField('courseid', $book->course);
     $doc->addField('contextlink', '/mod/book/view.php?id=' . $cm->id .'&chapterid=' . $chapter->id);
