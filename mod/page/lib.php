@@ -508,7 +508,7 @@ function page_search_get_documents($id) {
     $doc->addField('modified', gmdate('Y-m-d\TH:i:s\Z', $page->timemodified));
     $doc->addField('intro', strip_tags($page->intro, '<p></p><br><br/>'));
     $doc->addField('title', $page->name);
-    $doc->addField('content', strip_tags(preg_replace('/style=\\"[^\\"]*\\"/', '', $page->content), '<p></p><br><br/>'));
+    $doc->addField('content', strip_tags($page->content, '<br><br/>'));
     $doc->addField('courseid', $page->course);
     $doc->addField('contextlink', '/mod/page/view.php?id=' . $cm->id);
     $doc->addField('modulelink', '/mod/page/view.php?id=' . $cm->id);

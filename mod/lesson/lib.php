@@ -1061,7 +1061,7 @@ function lesson_search_get_documents($id) {
     $doc->addField('created', gmdate('Y-m-d\TH:i:s\Z', $lessonpage->timecreated));
     $doc->addField('modified', gmdate('Y-m-d\TH:i:s\Z', $lessonpage->timemodified));
     $doc->addField('name', $lesson->name);
-    $doc->addField('content', strip_tags(preg_replace('/style=\\"[^\\"]*\\"/', '', $lessonpage->contents), '<p></p><br><br/>'));
+    $doc->addField('content', strip_tags($lessonpage->contents, '<br><br/>'));
     $doc->addField('title', $lessonpage->title);
     $doc->addField('courseid', $lesson->course);
     $doc->addField('contextlink', '/mod/lesson/view.php?id=' . $cm->id . '&pageid=' . $lessonpage->id);

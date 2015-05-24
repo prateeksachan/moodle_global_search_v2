@@ -510,7 +510,7 @@ function resource_search_get_documents($id) {
     $doc->addField('type', SEARCH_TYPE_HTML);
     $doc->addField('id', 'resource_' . $resource->id);
     $doc->addField('modified', gmdate('Y-m-d\TH:i:s\Z', $resource->timemodified));
-    $doc->addField('intro', strip_tags($resource->intro, '<p></p><br><br/>'));
+    $doc->addField('intro', strip_tags($resource->intro, '<br><br/>'));
     $doc->addField('title', $resource->name);
     $doc->addField('courseid', $resource->course);
     $doc->addField('contextlink', $contextlink);

@@ -360,7 +360,7 @@ function label_search_get_documents($id) {
     $doc->addField('type', SEARCH_TYPE_HTML);
     $doc->addField('id', 'label_' . $label->id);
     $doc->addField('modified', gmdate('Y-m-d\TH:i:s\Z', $label->timemodified));
-    $doc->addField('intro', strip_tags($label->intro, '<p></p><br><br/>'));
+    $doc->addField('intro', strip_tags($label->intro, '<br><br/>'));
     $doc->addField('title', $label->name);
     $doc->addField('courseid', $label->course);
     $doc->addField('contextlink', '/course/view.php?id=' . $label->course);

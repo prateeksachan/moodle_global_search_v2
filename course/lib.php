@@ -3741,7 +3741,7 @@ function course_search_get_documents($id) {
     $doc->addField('type', SEARCH_TYPE_HTML);
     $doc->addField('id', 'course_'.$course->id);
     $doc->addField('modified', gmdate('Y-m-d\TH:i:s\Z', $course->timemodified));
-    $doc->addField('intro', strip_tags($course->summary, '<p></p><br><br/>'));
+    $doc->addField('intro', strip_tags($course->summary, '<br><br/>'));
     $doc->addField('title', $course->fullname);
     $doc->addField('courseid', $course->id);
     $doc->addField('contextlink', '/course/view.php?id='.$course->id);

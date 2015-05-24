@@ -467,7 +467,7 @@ function book_search_get_documents($id) {
     $doc->addField('modified', gmdate('Y-m-d\TH:i:s\Z', $chapter->timemodified));
     $doc->addField('name', $book->name);
     $doc->addField('title', $chapter->title);
-    $doc->addField('content', strip_tags(preg_replace('/style=\\"[^\\"]*\\"/', '', $chapter->content), '<p></p><br><br/>'));
+    $doc->addField('content', strip_tags($chapter->content, '<br><br/>'));
     $doc->addField('type', SEARCH_TYPE_HTML);
     $doc->addField('courseid', $book->course);
     $doc->addField('contextlink', '/mod/book/view.php?id=' . $cm->id .'&chapterid=' . $chapter->id);
@@ -491,6 +491,10 @@ function book_search_access($id) {
 
     try {
         $context = context_module::instance($cm->id);
+        if (!$cm->visible && !has_capability('mod/book:viewhiddenchapters', $context)) {
+            return SEARCH_ACCESS_DENIED;
+        }
+
         require_capability('mod/book:read', $context);
     } catch (moodle_exception $ex) {
         return SEARCH_ACCESS_DENIED;

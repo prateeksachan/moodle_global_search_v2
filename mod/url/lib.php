@@ -355,7 +355,7 @@ function url_search_get_documents($id) {
     $doc->addField('type', SEARCH_TYPE_HTML);
     $doc->addField('id', 'url_' . $url->id);
     $doc->addField('modified', gmdate('Y-m-d\TH:i:s\Z', $url->timemodified));
-    $doc->addField('intro', strip_tags($url->intro, '<p></p><br><br/>'));
+    $doc->addField('intro', strip_tags($url->intro, '<br><br/>'));
     $doc->addField('title', $url->name);
     $doc->addField('content', $url->externalurl);
     $doc->addField('courseid', $url->course);

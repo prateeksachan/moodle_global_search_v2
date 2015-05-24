@@ -3165,7 +3165,7 @@ function glossary_search_get_documents($id) {
     $doc->addField('created', gmdate('Y-m-d\TH:i:s\Z', $glossaryentry->timecreated));
     $doc->addField('modified', gmdate('Y-m-d\TH:i:s\Z', $glossaryentry->timemodified));
     $doc->addField('name', $glossary->name);
-    $doc->addField('content', strip_tags(preg_replace('/style=\\"[^\\"]*\\"/', '', $glossaryentry->definition), '<p></p><br><br/>'));
+    $doc->addField('content', strip_tags($glossaryentry->definition, '<br><br/>'));
     $doc->addField('title', $glossaryentry->concept);
     $doc->addField('courseid', $glossary->course);
     $doc->addField('contextlink', $contextlink);
